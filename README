@@ -1,0 +1,64 @@
+// core - js compiler ,coverrt modern js code to 
+// loader = jsx, and js file ko load 
+// preset-react => react code ko kese read krna h usko preset 
+// preset-env => kis env (browser ) m chlega usko handle krega
+// css-loader = > .css ko load krne m help krega
+// style-loader => css ko aplly krne m help krega
+// mini-css-extract-plugin => css ko seperate file m rkhe k liye
+// html-webpack-plugin => ye btayega ...jo hmare html file h usko base file use kre
+
+// const { ProvidePlugin } = require("webpack")
+
+  
+
+// //webpack.config.js
+
+// entry: entry file
+// file ko budle krek minifined output dega
+// output:{
+//     filename:"bundle,js" -- file name bundle krna
+//     path: "",
+    
+// },
+// plugins:[
+//         new HtmlWebPackPlugin({
+//             template:'./public/index.html'   --->ye btayega ...jo hmare html file h usko base file use kre, budle automaticaly index.html k andr aa jayega
+        
+//         })
+//         clean:true // fresh build banyega
+//     ],
+
+module = {
+        rules:[
+            {
+                test:/\.js$/,   ----> .js ko kis trike se read krna h .... (.js se end hori h ....., "or dot ka special meaing hota h so / lga k dot ko ignore kra")
+                use:{
+                    loader:'babel-loader',   --- .js se end hone vali file ko read krega....(babel loader)
+                    options:{
+                        presets:['@babel/preset-react','@babel/preset-env']  ---> jsx ko handle krne k liye iska use krenge, or preset-env browser ko handle krega
+                    }
+                }
+            }
+        ]
+    }      
+
+// webpack dev-server => bar bar load krna pdra h so ab hm///
+// static file ko serve krnge ....so d//
+devServer:{
+    static:{
+        directory:path.join(__dirname,'dist') // static path ko serve krega
+    },
+    port:5000 / or port bhi define kr lete h
+}
+
+// or package.json m ek script deni Pdegi
+// check script: dev
+
+//Now we need to use css
+for this ==>
+
+{
+    test:/\.css$/,   //target css, 
+    use:["style-loader","css-loader"] // css-loader will load css and style loader then add that css to file , it runs from right to left
+}
+
